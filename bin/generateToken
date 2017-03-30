@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const isAsyncSupported = require('is-async-supported')
+
+const argv = require('yargs').argv;
+const v4 = require('uuid').v4;
+
+if (!isAsyncSupported()) {
+  require('source-map-support').install({
+    environment: 'node'
+  });
+  require('async-to-gen/register');
+}
+
+const formatNumber = require('../lib/util').formatNumber;
+
+const tokenFactory = require('../lib/token').factory;
+
+const secret = argv.secret;
+
+const number = argv.number ? formatNumber(argv.number) : null;
+
+if (!secret) {
+  process.stderr.write('ERROR: You must specify a secret:\n./bin/generateToken --number=<INBOUND NUMBER> --secret <TOKEN SECRET>\n');
+  return process.exit(1);
+}
+
+const id = v4();
+
+try {
+  const token = tokenFactory({ secret, number, id });
+  process.stdout.write(`${token}\n`);
+  process.exit(0);
+} catch (e) {
+  process.stderr.write(`ERROR: ${err.message}`);
+  process.exit(1);
+}

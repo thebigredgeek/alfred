@@ -4,7 +4,32 @@
   "description": "Callbox bot to buzz people into your apartment building",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "precommit": "lint-staged",
+    "test": "ava",
+    "lint": "xo",
+    "start": "DEBUG=alfred micro"
+  },
+  "xo": {
+    "extends": "prettier"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "now": {
+    "alias": "alfred",
+    "files": [
+      "lib",
+      "index.js"
+    ],
+    "env": {
+      "TONE_SEQUENCE": "9",
+      "WELCOME_MESSAGE": "Welcome",
+      "WELCOME_LANGUAGE": "en-US"
+    }
   },
   "repository": {
     "type": "git",
@@ -24,10 +49,30 @@
   },
   "homepage": "https://github.com/thebigredgeek/alfred#readme",
   "devDependencies": {
+    "async-to-gen": "^1.3.2",
     "ava": "^0.18.2",
+    "coveralls": "^2.12.0",
+    "eslint-config-prettier": "^1.5.0",
+    "husky": "^0.13.3",
+    "is-async-supported": "^1.2.0",
     "lint-staged": "^3.4.0",
-    "request-promise": "^4.2.0",
+    "nyc": "^10.2.0",
+    "prettier": "^0.22.0",
+    "source-map-support": "^0.4.14",
     "test-listen": "^1.0.1",
-    "xo": "^0.18.1"
+    "xo": "^0.18.1",
+    "yargs": "^7.0.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "debug": "^2.6.3",
+    "jsonwebtoken": "^7.3.0",
+    "micro": "^7.3.0",
+    "now": "^4.10.2",
+    "now-logs": "^0.0.7",
+    "request-promise": "^4.2.0",
+    "then-sleep": "^1.0.1",
+    "twilio": "^2.11.1",
+    "uuid": "^3.0.1"
   }
 }

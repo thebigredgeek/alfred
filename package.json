@@ -1,0 +1,33 @@
+{
+  "name": "alfred",
+  "version": "1.0.0",
+  "description": "Callbox bot to buzz people into your apartment building",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebigredgeek/alfred.git"
+  },
+  "keywords": [
+    "bot",
+    "callbox",
+    "apartment",
+    "twilio",
+    "hack"
+  ],
+  "author": "Andrew E. Rhyne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thebigredgeek/alfred/issues"
+  },
+  "homepage": "https://github.com/thebigredgeek/alfred#readme",
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "lint-staged": "^3.4.0",
+    "request-promise": "^4.2.0",
+    "test-listen": "^1.0.1",
+    "xo": "^0.18.1"
+  }
+}
